@@ -1,0 +1,1 @@
+使用管道 pipe 读写 linux ps 数据
