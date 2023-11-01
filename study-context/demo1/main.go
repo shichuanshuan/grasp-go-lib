@@ -2,30 +2,28 @@ package main
 
 import (
 	"context"
-	"errors"
 	"fmt"
-	"strings"
 	"time"
 )
 
 func main() {
-	// ´´½¨Ò»¸ö´øÓĞÈ¡Ïû¹¦ÄÜµÄÉÏÏÂÎÄ
-	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	// åˆ›å»ºä¸€ä¸ªå¸¦æœ‰å–æ¶ˆåŠŸèƒ½çš„ä¸Šä¸‹æ–‡
+	ctx, cancel := context.WithTimeout(context.Background(), 400*time.Second)
 	defer cancel()
-	// Ä£ÄâÒ»¸öºÄÊ±²Ù×÷£¬ÔÚ 3 ÃëºóÈ¡ÏûÉÏÏÂÎÄ
+	// æ¨¡æ‹Ÿä¸€ä¸ªè€—æ—¶æ“ä½œï¼Œåœ¨ 3 ç§’åå–æ¶ˆä¸Šä¸‹æ–‡
 
-	//time.Sleep(3 * time.Second)
+	time.Sleep(3 * time.Second)
 
-	// Ö´ĞĞ²Ù×÷²¢¼ì²éÉÏÏÂÎÄ×´Ì¬
+	// æ‰§è¡Œæ“ä½œå¹¶æ£€æŸ¥ä¸Šä¸‹æ–‡çŠ¶æ€
 	if ctx != nil {
 		select {
 		case <-ctx.Done():
-			fmt.Println("²Ù×÷±»È¡Ïû:", ctx.Err())
+			fmt.Println("æ“ä½œè¢«å–æ¶ˆ:", ctx.Err())
 		default:
-			fmt.Println("²Ù×÷Õı³£Íê³É")
-			// ÕâÀï¿ÉÒÔÌí¼Ó¾ßÌåµÄ²Ù×÷´úÂë
+			fmt.Println("æ“ä½œæ­£å¸¸å®Œæˆ")
+			// è¿™é‡Œå¯ä»¥æ·»åŠ å…·ä½“çš„æ“ä½œä»£ç 
 		}
 	} else {
-		fmt.Println("ÉÏÏÂÎÄÎª¿Õ")
+		fmt.Println("ä¸Šä¸‹æ–‡ä¸ºç©º")
 	}
 }
