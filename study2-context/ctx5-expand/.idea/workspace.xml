@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8abbef9-d88e-4a57-951a-36952fdd3bf7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-    </list>
+    <list default="true" id="c8abbef9-d88e-4a57-951a-36952fdd3bf7" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,7 +36,7 @@
     "WebServerToolWindowFactoryState": "false",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "E:/workspace/grasp-go-lib/study-context/ctx5-expand"
+    "last_opened_file_path": "E:/workspace/grasp-go-lib/study2-context/ctx5-expand"
   }
 }]]></component>
   <component name="RunManager">
