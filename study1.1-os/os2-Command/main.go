@@ -10,9 +10,9 @@ import (
 
 func UseCommand() {
 	// cmd /C 用于执行完命令后关闭命令提示符窗口
-	// cmd := exec.Command("cmd", "/C" "echo", "Hello world")
+	cmd := exec.Command("cmd", "/C", "echo", "Hello world")
 
-	cmd := exec.Command("python", "shics.py")
+	//cmd := exec.Command("python", "shics.py")
 
 	// 1
 	// 执行命令并获取输出结果

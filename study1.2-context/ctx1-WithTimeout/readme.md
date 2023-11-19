@@ -1,5 +1,6 @@
 [函数]
 func context.WithTimeout()
+设置超时时间
 
 [功能]
 模拟 3s 后取消，让程序自动结束
