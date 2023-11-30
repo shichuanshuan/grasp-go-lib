@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8abbef9-d88e-4a57-951a-36952fdd3bf7" name="Changes" comment="" />
+    <list default="true" id="c8abbef9-d88e-4a57-951a-36952fdd3bf7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../study1.1-os/os1-LookPath/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../study1.1-os/os1-LookPath/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../study1.1-os/os2-Command/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../../study1.1-os/os2-Command/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ctx1-WithTimeout/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../ctx1-WithTimeout/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ctx2-WithCancel/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../ctx2-WithCancel/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ctx3-WithDeadline/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../ctx3-WithDeadline/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ctx4-WithValue/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/../ctx4-WithValue/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../study2.2-signal/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../study2.2-signal/readme.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,7 +44,9 @@
     "WebServerToolWindowFactoryState": "false",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "E:/workspace/grasp-go-lib/study2-context/ctx5-expand"
+    "last_opened_file_path": "E:/workspace/grasp-go-lib/study1.3-time/time1-timer",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)"
   }
 }]]></component>
   <component name="RunManager">
