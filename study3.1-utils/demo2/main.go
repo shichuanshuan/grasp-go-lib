@@ -7,18 +7,17 @@ import (
 
 func hello() {
 	buf := utils.GetBuffer()
-	defer utils.PutBuffer(buf)
 
 	buf.Data = []byte("hello world")
+	utils.PutBuffer(buf)
 }
 
 func readData() {
 	//buf := utils.GetBuffer()
 	buf := utils.Buffer{}
-	defer utils.PutBuffer(&buf)
 
 	buf.Data = []byte("shics")
-
+	utils.PutBuffer(&buf)
 }
 
 func main() {
