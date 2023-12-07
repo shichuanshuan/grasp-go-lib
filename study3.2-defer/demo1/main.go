@@ -14,7 +14,7 @@ func (n *number) pprint() { fmt.Println(*n) }
 作为函数参数，则在defer定义时就把值传递给defer，并被cache起来；
 作为闭包引用的话，则会在defer函数真正调用时根据整个上下文确定当前的值。
 */
-func main1() {
+func main() {
 	var n number
 
 	defer n.print()

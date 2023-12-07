@@ -11,26 +11,31 @@ import (
 */
 func mergeFile() error {
 	// 使用的是同一个变量名 f，defer 复制的是当前的值
+	a := 3
 	f, _ := os.Open("file1.txt")
 	if f != nil {
 		defer func(f io.Closer) {
 			if err := f.Close(); err != nil {
 				fmt.Printf("defer close file1.txt err %v\n", err)
 			}
+			fmt.Println("1 ", a)
 		}(f)
 	}
 
 	// ……
 
+	a = 4
 	f, _ = os.Open("file2.txt")
 	if f != nil {
 		defer func(f io.Closer) {
 			if err := f.Close(); err != nil {
 				fmt.Printf("defer close file2.txt err %v\n", err)
 			}
+			fmt.Println("2 ", a)
 		}(f)
 	}
 
+	a = 5
 	return nil
 }
 
