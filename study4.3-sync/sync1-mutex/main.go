@@ -5,19 +5,26 @@ import (
 	"sync"
 	"time"
 )
-// MutexÊÇ×î»ù±¾µÄÍ¬²½Ô­ÓïÖ®Ò»£¬ÓÃÓÚ±£»¤¹²Ïí×ÊÔ´£¬È·±£ÔÚÍ¬Ò»Ê±¿ÌÖ»ÓĞÒ»¸ögoroutine¿ÉÒÔ·ÃÎÊËü¡£ÏÂÃæÊÇÒ»¸ö¼òµ¥µÄÊ¾Àı£º
+
+// Mutexæ˜¯æœ€åŸºæœ¬çš„åŒæ­¥åŸè¯­ä¹‹ä¸€ï¼Œç”¨äºä¿æŠ¤å…±äº«èµ„æºï¼Œç¡®ä¿åœ¨åŒä¸€æ—¶åˆ»åªæœ‰ä¸€ä¸ªgoroutineå¯ä»¥è®¿é—®å®ƒã€‚ä¸‹é¢æ˜¯ä¸€ä¸ªç®€å•çš„ç¤ºä¾‹ï¼š
 var counter int
 var mutex sync.Mutex
 
+// å› ä¸º
 func increment() {
 	mutex.Lock()
-	defer mutex.Unlock()
 	counter++
+	mutex.Unlock()
 }
 
 func main() {
 	var wg sync.WaitGroup
-	for i := 0; i < 10; i++ {
+
+	start := time.Now().UnixNano()
+
+	//èµ·äº†10000ä¸ªåç¨‹è®©sumè‡ªå¢1ï¼Œä½†æ˜¯ç»“æœå´æ¯æ¬¡ä¸ä¸€æ ·ï¼Œå› ä¸ºç«æ€ï¼Œå¤šä¸ªåç¨‹å¯èƒ½è·å–äº†åŒä¸€ä¸ªå€¼ï¼Œå› æ­¤å‡ºç°é—®é¢˜
+	//ä½¿ç”¨sync.Mutexäº’æ–¥é”è§£å†³æ­¤é—®é¢˜
+	for i := 0; i < 10000; i++ {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
@@ -26,6 +33,7 @@ func main() {
 	}
 
 	wg.Wait()
+	end := time.Now().UnixNano()
 	fmt.Println("Counter:", counter)
+	fmt.Printf("timer %v\n", end-start)
 }
-//ÔÚÉÏÃæµÄÀı×ÓÖĞ£¬MutexÓÃÓÚËø¶¨counter±äÁ¿£¬ÒÔÈ·±£ÔÚÈÎºÎÊ±¿ÌÖ»ÓĞÒ»¸ögoroutineÄÜ¹»µİÔöËü¡£WaitGroupÓÃÓÚµÈ´ıËùÓĞgoroutineÍê³ÉºóÔÙ¼ÌĞøÖ´ĞĞÖ÷³ÌĞò¡£

@@ -1,0 +1,1 @@
+sync.Mutex -> mutex.Lock() -> atomic.CompareAndSwapInt32

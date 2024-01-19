@@ -1,0 +1,49 @@
+`atomic.CompareAndSwapInt32()` 是一个原子操作函数，用于在并发场景中原子地比较和交换 `int32` 类型的值。
+
+函数签名如下：
+```go
+func CompareAndSwapInt32(addr *int32, old, new int32) (swapped bool)
+```
+
+该函数接受三个参数：
+- `addr`：一个指向 `int32` 类型变量的指针，表示要进行比较和交换的目标变量。
+- `old`：期望的旧值。
+- `new`：要设置的新值。
+
+`CompareAndSwapInt32()` 函数会比较目标变量的当前值与 `old` 参数的值，如果两者相等，则将目标变量的值更新为 `new`，返回 `true` 表示交换成功，否则返回 `false`。
+
+使用 `atomic.CompareAndSwapInt32()` 的典型用法是在多个 goroutine 中对某个共享变量进行并发访问和更新时，保证数据的一致性和正确性，避免竞态条件的发生。
+
+使用示例：
+```go
+package main
+
+import (
+	"fmt"
+	"sync/atomic"
+)
+
+// 如何避免竞争
+func main() {
+	var value int32 = 0
+
+	// 在多个 goroutine 中同时尝试将 value 的值从 0 更新为 1
+	go func() {
+		atomic.CompareAndSwapInt32(&value, 0, 1)
+	}()
+
+	go func() {
+		atomic.CompareAndSwapInt32(&value, 0, 1)
+	}()
+
+	// 等待 goroutine 执行完毕
+	// 此处等待的目的是为了保证前面的 goroutine 完成操作，以便打印最终的 value 值
+	// 在实际并发场景中，可能需要使用其他同步机制来等待所有的 goroutine 结束
+	// 这里仅作为示例，实际应用中需要根据具体需求选择合适的同步方式
+	_ = value
+
+	fmt.Println(value) // 输出 1
+}
+```
+
+注意，`atomic.CompareAndSwapInt32()` 函数只能保证某个特定变量的原子性操作，不能用于跨多个变量的复杂交互。在并发编程中，需要综合考虑多个因素，如正确的锁机制、同步原语的选择等，来保证数据的一致性和正确性。

@@ -1,0 +1,1 @@
+sync.Mutex -> mutex.Unlock() -> atomic.AddInt32

@@ -1,56 +1,67 @@
 package main
 
 import (
-	"fmt"
 	"sync"
 	"time"
 )
-// RWMutex是对Mutex的扩展，允许多个goroutine同时读取共享资源，但在写入时会互斥。这在读多写少的场景中特别有用。下面是一个示例：
-var (
-	data    map[string]string
-	rwMutex sync.RWMutex
-)
 
-func readData(key string) string {
-	rwMutex.RLock()
-	defer rwMutex.RUnlock()
-	return data[key]
-}
+var m *sync.RWMutex
 
-func writeData(key, value string) {
-	rwMutex.Lock()
-	defer rwMutex.Unlock()
-	data[key] = value
-}
-
+// 写锁发生时，其他的读写都需要等待
+// 读锁发生时，其他读锁无需等待，并发执行，互不影响；其他写锁需要等待
+// 写锁之间互斥
 func main() {
-	data = make(map[string]string)
+	m = new(sync.RWMutex)
+	go write(1)
+	go read(21)
+	go write(2)
+	go read(22)
+	go write(3)
+	go read(23)
+	go write(4)
+	go read(24)
+	go write(5)
+	go read(25)
+	go write(6)
 
-	var wg sync.WaitGroup
-
-	// 写入数据
-	for i := 0; i < 5; i++ {
-		wg.Add(1)
-		go func(index int) {
-			defer wg.Done()
-			key := fmt.Sprintf("key%d", index)
-			value := fmt.Sprintf("value%d", index)
-			writeData(key, value)
-			time.Sleep(time.Millisecond * 100) // 模拟写入耗时
-		}(i)
-	}
-
-	// 读取数据
-	for i := 0; i < 10; i++ {
-		wg.Add(1)
-		go func(index int) {
-			defer wg.Done()
-			key := fmt.Sprintf("key%d", index%5)
-			value := readData(key)
-			fmt.Printf("Read: %s - %s\n", key, value)
-		}(i)
-	}
-
-	wg.Wait()
+	time.Sleep(20 * time.Second)
 }
-// 在上述例子中，RWMutex用于保护对data的读写操作。多个goroutine可以同时读取，但在写入时会相互互斥。
+
+func read(i int) {
+	println(i, "read start")
+	m.RLock()
+	var p = 0
+	var pr = "read"
+	for {
+		pr += "."
+		if p == 7 {
+			break
+		}
+		time.Sleep(700 * time.Millisecond)
+		p++
+		println(i, pr)
+
+	}
+	m.RUnlock()
+	println(i, "read end")
+}
+
+func write(i int) {
+	println(i, "write start")
+
+	m.Lock()
+	var p = 0
+	var pr = "write"
+	for {
+		pr += "."
+		if p == 7 {
+			break
+		}
+		time.Sleep(700 * time.Millisecond)
+		p++
+		println(i, pr)
+
+	}
+	m.Unlock()
+	println(i, "write end")
+}

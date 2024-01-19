@@ -1,0 +1,47 @@
+`atomic.AddInt32()` 是一个原子操作函数，用于在并发场景中原子地对 `int32` 类型的值进行加法操作。
+
+函数签名如下：
+```go
+func AddInt32(addr *int32, delta int32) (new int32)
+```
+
+该函数接受两个参数：
+- `addr`：一个指向 `int32` 类型变量的指针，表示要进行加法操作的目标变量。
+- `delta`：要加上的增量值。
+
+`AddInt32()` 函数会将目标变量的当前值与 `delta` 相加，并将结果作为新的值存储到目标变量中。最后，函数返回新的值。
+
+使用 `atomic.AddInt32()` 的典型用法是在多个 goroutine 中对共享变量进行并发的增加或减少操作，保证数据的一致性和正确性。
+
+使用示例：
+```go
+package main
+
+import (
+	"fmt"
+	"sync/atomic"
+)
+
+func main() {
+	var value int32 = 0
+
+	// 在多个 goroutine 中同时对 value 进行增加操作
+	go func() {
+		atomic.AddInt32(&value, 1)
+	}()
+
+	go func() {
+		atomic.AddInt32(&value, 1)
+	}()
+
+	// 等待 goroutine 执行完毕
+	// 此处等待的目的是为了保证前面的 goroutine 完成操作，以便打印最终的 value 值
+	// 在实际并发场景中，可能需要使用其他同步机制来等待所有的 goroutine 结束
+	// 这里仅作为示例，实际应用中需要根据具体需求选择合适的同步方式
+	_ = value
+
+	fmt.Println(value) // 输出 2
+}
+```
+
+注意，`atomic.AddInt32()` 函数只能保证某个特定变量的原子性操作，不能用于跨多个变量的复杂交互。在并发编程中，需要综合考虑多个因素，如正确的锁机制、同步原语的选择等，来保证数据的一致性和正确性。

@@ -1,5 +1,10 @@
 # grasp-go-lib
 掌握go语言的官网库
+
+# 学习网址
+https://studygolang.com/subject/2
+https://studygolang.com/subject/1
+
 [当前阶段]
 练习：utils，defer，escape，syscall
 
