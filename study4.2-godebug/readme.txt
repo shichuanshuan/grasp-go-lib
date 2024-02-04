@@ -1,1 +1,1 @@
-godebug 来之 command
+exec.command -> execwait.Value()

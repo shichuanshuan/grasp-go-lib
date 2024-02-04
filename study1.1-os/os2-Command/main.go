@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"os"
 	"os/exec"
 	"time"
 )
@@ -13,6 +12,7 @@ func UseCommand() {
 	cmd := exec.Command("cmd", "/C", "echo", "Hello world")
 
 	//cmd := exec.Command("python", "shics.py")
+	//cmd := exec.Command("D:\\python\\python27\\python", "shics.py")
 
 	// 1
 	// 执行命令并获取输出结果
@@ -26,15 +26,15 @@ func UseCommand() {
 	fmt.Println(string(output))
 
 	// 2
-	cmd.Stdout = os.Stdout
+	//cmd.Stdout = os.Stdout
 	// Run 和 Start只能用一个
 	// Run starts the specified command and waits for it to complete.
-	_ = cmd.Run()
+	//_ = cmd.Run()
 
 	// 3
 	// Start starts the specified command but does not wait for it to complete.
-	_ = cmd.Start()
-	_ = cmd.Wait()
+	//_ = cmd.Start()
+	//_ = cmd.Wait()
 }
 
 func UseCommandContext() {
@@ -42,11 +42,12 @@ func UseCommandContext() {
 	defer cancel()
 
 	//if err := exec.CommandContext(ctx, "sleep", "5").Run(); err != nil {
+	//cmd := exec.CommandContext(ctx, "sleep", "5")
 	cmd := exec.CommandContext(ctx, "timeout", "/t", "5", "nobreak")
 	if err := cmd.Run(); err != nil {
 		// This will fail after 100 milliseconds. The 5 second sleep
 		// will be interrupted.
-		fmt.Println("failed...")
+		fmt.Println("failed...", err)
 	}
 
 	fmt.Println("success...")

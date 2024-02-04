@@ -23,5 +23,5 @@ start = i + 1
 }
 list = append(list, path[start:])
 
-为什么不适用 strings.Split 进行分割呢
+为什么不使用 strings.Split 进行分割呢
 可能因为手动分割效率更高
