@@ -22,8 +22,9 @@ func main() {
 
 	_ = ps.Start()
 	_ = grep.Start()
+
 	ps.Wait()
-	w.Close()
 	grep.Wait()
+
 	io.Copy(os.Stdout, &buffer) // buffer拷贝到系统标准输出
 }
