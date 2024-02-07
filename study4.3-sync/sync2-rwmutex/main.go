@@ -65,3 +65,34 @@ func write(i int) {
 	m.Unlock()
 	println(i, "write end")
 }
+
+func read2() {
+	var rw sync.RWMutex
+
+	rw.RLock()
+
+	var pr = "read2"
+	for i := 0; i < 5; i++ {
+		time.Sleep(300 * time.Millisecond)
+
+		pr += "."
+		println(pr)
+	}
+
+	rw.Unlock()
+}
+
+func write2() {
+	var rw sync.RWMutex
+
+	rw.Lock()
+
+	var pr = "write"
+	for i := 0; i < 5; i++ {
+		time.Sleep(300 * time.Millisecond)
+		pr += "."
+		println(pr)
+	}
+
+	rw.Unlock()
+}

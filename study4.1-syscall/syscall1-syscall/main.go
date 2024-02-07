@@ -41,6 +41,6 @@ func main() {
 	}
 
 	// 将缓冲区转换为字符串并打印环境变量值
-	value := string(utf16.Decode(buffer[:ret-1]))
-	fmt.Println("环境变量值:", value)
+	value := string(utf16.Decode(buffer))
+	fmt.Printf("环境变量值:[%v]\n", value)
 }
