@@ -1,8 +1,8 @@
 package main
 
 import (
-	"errors"
 	"fmt"
+	"io/ioutil"
 	"time"
 )
 
@@ -40,17 +40,17 @@ func (p *Promise) Reject(err error) {
 func fetchData() *Promise {
 	p := new(Promise)
 
+	filename := "readme.md"
+	// 代码部分
 	go func() {
-		data := "Data fetched successfully!"
-		err := errors.New("Something went wrong")
-		//var err error
+		fileContent, err := ioutil.ReadFile(filename)
 		if err != nil {
 			p.Reject(err)
 		} else {
-			p.Resolve(data)
+			p.Resolve(string(fileContent))
 		}
 	}()
-	//fmt.Println("end")
+	fmt.Println("end")
 
 	return p
 }
