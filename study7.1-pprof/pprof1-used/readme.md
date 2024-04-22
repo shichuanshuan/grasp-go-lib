@@ -1,4 +1,5 @@
 # 服务型 pprof 的应用
+> 网页上要加上 url /debug/pprof
 
 ### 所有过去内存分配的采样
 go tool pprof http://127.0.0.1:8080/debug/pprof/allocs

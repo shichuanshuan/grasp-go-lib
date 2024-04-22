@@ -1,5 +1,6 @@
 # 通过命令行的查看内存
 > 也可通过 Web 放的查看
+go tool pprof -http=:8899 .\cpu.prof
 
 ### top
 topN，它列出最耗时间的地方
